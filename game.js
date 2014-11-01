@@ -122,6 +122,16 @@ function initGame(alphabet) {
 	gameGui.push('<div id="enteredTextPane">');
 		gameGui.push('Text will be here');
 	gameGui.push('</div>');
+	gameGui.push('<div id="currentCharactersBox">');
+		gameGui.push('<h1>Current characters</h1>');
+		for(var i = 0; i < alphabetSave.progress; i++) {
+			gameGui.push('<div class="alphabetPreviewSpan">');
+				gameGui.push('<h1>' + currentAlphabet.characters[i].character + '</h1>');
+				gameGui.push('<h3>(' + currentAlphabet.characters[i].romaji + ')</h3>');
+			gameGui.push('</div>');
+		}
+		gameGui.push('')
+	gameGui.push('</div>');
 	gameGui.push('<div id="instructionsDiv">');
 		gameGui.push('<i>Enter your guess, or press space to skip</i>');
 	gameGui.push('</div>');
@@ -164,6 +174,7 @@ function updateGame() {
 			gameTime = 0;
 			roundRunning = false;
 		} else {
+			$("#currentCharactersBox").hide();
 			currentChar = getNewChar();
 			drawNewCharacter();
 		}

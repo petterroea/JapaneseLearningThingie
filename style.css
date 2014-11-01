@@ -46,3 +46,20 @@
   	text-align: center;
   	margin-top: 10px;
 }
+#currentCharactersBox {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(200, 200, 200);
+  width: 500px;
+  /* position: absolute; */
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+.alphabetPreviewSpan {
+  border-style: solid;
+  border-width: 1px;
+  width: 50px;
+  height: 140px;
+  display: inline-block;
+}
