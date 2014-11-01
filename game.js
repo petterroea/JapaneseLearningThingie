@@ -95,7 +95,7 @@ function getAccuracy() {
 			}
 		}
 	}
-	return accumulatedAcc / playedCharacters.length;
+	return (accumulatedAcc / playedCharacters.length).toFixed(2);
 }
 
 function initGame(alphabet) {
@@ -203,6 +203,8 @@ function drawNewCharacter() {
 
 }
 function gameOver() {
+	$(window).unbind('keypress');
+	$(window).unbind('keydown');
 	var rounds = [];
 	rounds.push({"score": score, "accuracy": getAccuracy(), "data": playedCharacters});
 	for(var i = 0; i < alphabetSave.previousRounds.length && i < 4; i++) {
