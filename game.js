@@ -143,6 +143,7 @@ function initGame(alphabet) {
 			if(e.keyCode === 8) {
 				enteredText = enteredText.substring(0, enteredText.length-1);
 				$("#enteredTextPane").html(enteredText);
+				e.preventDefault();
 			}
 		}
 	});
