@@ -124,7 +124,7 @@ function initGame(alphabet) {
 	//Render ui
 	$("#content").html(gameGui.join(''));
 	$(window).keypress(function(e){
-		console.log(e.charCode);
+		//console.log(e.charCode);
 
 		if(roundRunning) {
 			if(String.fromCharCode(e.charCode) == ' ') {
@@ -137,7 +137,7 @@ function initGame(alphabet) {
 		}
 	});
 	$(window).keydown(function(e){
-		console.log(e.charCode);
+		//console.log(e.charCode);
 
 		if(roundRunning) {
 			if(e.keyCode === 8) {
@@ -168,8 +168,31 @@ function updateGame() {
 	}
 }
 function getNewChar() {
-	var charNum = Math.round( Math.random()*(alphabetSave.progress-1) );
-	return currentAlphabet.characters[charNum];
+	var charArray = [];
+	//Add every character
+	for(var i = 0; i < alphabetSave.progress; i++) {
+		charArray.push(currentAlphabet.characters[i]);
+	}
+	//Add failed characters again so they can be replayed or something i dunno...
+	for(var i = 0; i < alphabetSave.previousRounds.length; i++) {
+		for(var x = 0; x < alphabetSave.previousRounds[i].data.length; x++) {
+			if(!alphabetSave.previousRounds[i].data[x].passed) {
+				charArray.push({"character": alphabetSave.previousRounds[i].data[x].character, "romaji": alphabetSave.previousRounds[i].data[x].romaji});
+			}
+		}
+	}
+	//Add failed characters from this round
+	for(var i = 0; i < playedCharacters.length; i++) {
+		if(!playedCharacters[i].passed) {
+			charArray.push( {"character": playedCharacters[i].character, "romaji": playedCharacters[i].romaji} );
+		}
+	}
+	console.log("Character array:");
+	console.log(charArray)
+	//Calculate the number
+	var charNum = Math.round( Math.random()*(charArray.length) );
+	console.log('Returning character ' + charNum);
+	return charArray[charNum];
 }
 function drawNewCharacter() {
 	$("#characterPane").html(currentChar.character);
@@ -238,7 +261,7 @@ function gameStartCountdown() {
 		gameStartCountdownValue = 0;
 		updateGame();
 	}
-	console.log("start");
+	//console.log("start");
 }
 var newCharacterCountdownValue = 0;
 var newCharacterCountdownHandle = null;
@@ -255,7 +278,7 @@ function newCharCountdown() {
 		newCharacterCountdownValue = 0;
 		drawNewCharacter();
 	}
-	console.log("newchar");
+	//console.log("newchar");
 }
 var gameScoreCounterHandle = null;
 var msecPerGameScore = 800;
