@@ -67,6 +67,10 @@ function validateText() {
 
 		renderScoreText();
 		updateGame();
+	} else if(enteredText.length <= currentChar.romaji.length) {
+		if(currentChar.romaji.substring(0, enteredText.length) != enteredText) {
+			passRound();
+		}
 	}
 }
 
