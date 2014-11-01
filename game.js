@@ -190,7 +190,7 @@ function getNewChar() {
 	console.log("Character array:");
 	console.log(charArray)
 	//Calculate the number
-	var charNum = Math.round( Math.random()*(charArray.length) );
+	var charNum = Math.round( Math.random()*(charArray.length-1) );
 	console.log('Returning character ' + charNum);
 	return charArray[charNum];
 }
