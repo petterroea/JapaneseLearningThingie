@@ -314,7 +314,9 @@ function generateWelcomeScreen() {
 						for(var a = 0; a < gameList[i].characters.length && a < 4; a++) {
 							data.push(gameList[i].characters[a].character + " ");
 						}
+					var gameSave = getAlphabetSave(gameList[i].name);
 					data.push('</h4><center>');
+					data.push('<center><i>Progress: ' + gameSave.progress + '/' + gameList[i].characters.length + '</i></center>');
 				data.push('</div>');
 			}
 		} else {
