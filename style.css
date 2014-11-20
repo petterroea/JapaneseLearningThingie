@@ -63,3 +63,35 @@
   height: 140px;
   display: inline-block;
 }
+#drawTest {
+  border: 1px solid;
+}
+#writeGameRomajiBox {
+  font-size: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  text-align: center;
+}
+#writeGameCanvas {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid;
+}
+.btn {
+  border: 2px solid;
+  width: 500px;
+}
+#writeGameScoreData {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid;
+  text-align: center;
+}
+#buttonHolder {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}

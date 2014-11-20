@@ -71,7 +71,7 @@ var LetterGame = {
 	},
 
 	initGame: function(alphabet) {
-		LetterGame.alphabetSave = SaveHandler.getAlphabetSave(alphabet.name);
+		LetterGame.alphabetSave = SaveHandler.getAlphabetSave(alphabet.name, "letterGame");
 		LetterGame.playedCharacters = [];
 		var gameGui = [];
 
@@ -205,7 +205,7 @@ var LetterGame = {
 		LetterGame.currentChar = null;
 
 		LetterGame.alphabetSave.previousRounds = rounds;
-		SaveHandler.saveAlphabet(LetterGame.alphabetSave);
+		SaveHandler.saveAlphabet(LetterGame.alphabetSave, "letterGame");
 
 		LetterGame.gameRunning = false;
 		LetterGame.gameStartCountdownValue = 0;
@@ -239,7 +239,7 @@ var LetterGame = {
 	},
 	addCharacter: function() {
 		LetterGame.alphabetSave.progress++;
-		SaveHandler.saveAlphabet(LetterGame.alphabetSave);
+		SaveHandler.saveAlphabet(LetterGame.alphabetSave, "letterGame");
 
 		var newCharacterData = [];
 

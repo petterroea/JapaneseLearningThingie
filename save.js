@@ -7,30 +7,30 @@ var SaveHandler = {
 		}
 		return $.parseJSON(localStorage.savegame);
 	},
-	getAlphabetSave: function(alphabetName) {
+	getAlphabetSave: function(alphabetName, gamemodeName) {
 		var savegame = this.getSavegame();
 		for(var i = 0; i < savegame.length; i++) {
-			if(savegame[i].alphabet == alphabetName) {
+			if(savegame[i].alphabet == alphabetName && savegame[i].gamemode == gamemodeName) {
 				return savegame[i];
 			}
 		}
-		savegame.push({"alphabet": alphabetName, "progress": 3, "previousRounds": []});
-		saveSavegame(savegame);
+		savegame.push({"alphabet": alphabetName, "progress": 3, "previousRounds": [], "gamemode": gamemodeName});
+		SaveHandler.saveSavegame(savegame);
 		return savegame[savegame.length-1];
 	},
 	saveSavegame: function(savegame) {
 		localStorage.savegame = JSON.stringify(savegame);
 	},
-	updateAlphabetSave: function(savegame, alphabet) {
+	updateAlphabetSave: function(savegame, alphabet, gamemodeName) {
 		for(var i = 0; i < savegame.length; i++) {
-			if(savegame[i].alphabet == alphabet.alphabet) {
+			if(savegame[i].alphabet == alphabet.alphabet && savegame[i].gamemode == gamemodeName) {
 				savegame[i] = alphabet;
 			}
 		}
 	},
-	saveAlphabet: function(alphabet) {
+	saveAlphabet: function(alphabet, gamemode) {
 		var savegame = SaveHandler.getSavegame();
-		SaveHandler.updateAlphabetSave(savegame, alphabet);
+		SaveHandler.updateAlphabetSave(savegame, alphabet, gamemode);
 		SaveHandler.saveSavegame(savegame);
 	}
 };
