@@ -18,6 +18,19 @@ function generateWelcomeScreen() {
 		if(localStorage.name) {
 			data.push('<h1>Welcome, ' + localStorage.name + '</h1>');
 			data.push('<p><input type="button" value="Delete local account" onClick="deleteAcc()"/></p>');
+			data.push('<h2>Vocabulary training</h2>');
+			data.push('<div id="vocabularyList">');
+			for(var i = 0; i < vocabularies.length; i++) {
+				var voc = vocabularies[i];
+				data.push('<div class="vocabularyEntry">');
+					data.push('<h4>' + voc.name + '</h4>');
+					data.push('<i>' + voc.description + '. Source: ' + voc.source + '</i><br />');
+					data.push('<input type="checkbox" class="vocabularyCheckbox" name="' + i + '" />');
+					data.push("Use<br />");
+				data.push('</div>');
+			}
+			data.push('</div>');
+			data.push('<input type="button" value="Go!" onClick="initVocab()"/>');
 			data.push('<h2>Romaji guessing</h2>');
 			for(var i = 0; i < gameList.length; i++) {
 				data.push('<div class="gameBox" id="gameBox' + i + '">');
@@ -73,4 +86,14 @@ function register() {
 function deleteAcc() {
 	localStorage.clear();
 	renderWelcomeScreen();
+}
+function initVocab() {
+	var vocabList = [];
+	$('input:checkbox.vocabularyCheckbox').each(function () {
+	    if(this.checked) {
+	    	vocabList.push(vocabularies[this.name]);
+	    }
+	});
+	console.log(vocabList);
+	VocabularyGame.init(vocabList);
 }

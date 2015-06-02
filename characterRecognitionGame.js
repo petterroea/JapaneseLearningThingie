@@ -22,7 +22,7 @@ var CharacterRecognitionGame = {
 		buildArray.push('<div id="writeGameScoreData">Total accuracy: 0%. Round 1 of ' + this.getGameLength() + '</div>');
 		buildArray.push('<div id="buttonHolder">placeholder</div>');
 
-		$("body").html(buildArray.join(""));
+		$("#content").html(buildArray.join(""));
 		this.generateCharacter();
 		this.resetGameButtons();
 	},
@@ -76,7 +76,7 @@ var CharacterRecognitionGame = {
 			buildArray.push('<b>You seem to be doing good. <input type="button" value="Add new character!" onClick="CharacterRecognitionGame.addNewCharacter()" /></b><br />');
 		}
 		buildArray.push('<input type="button" value="Go back" onClick="renderWelcomeScreen()" />');
-		$("body").html(buildArray.join(""));
+		$("#content").html(buildArray.join(""));
 	},
 	addNewCharacter: function() {
 		this.alphabetSave.progress++;
@@ -89,7 +89,7 @@ var CharacterRecognitionGame = {
 		newCharacterData.push('<center><h2>(' + this.currentAlphabet.characters[this.alphabetSave.progress-1].romaji + ') </h2></center>');
 		newCharacterData.push('<center><p><input type="button" value="Back to main menu" onClick="renderWelcomeScreen()"/></p></center>');
 
-		$("#body").html(newCharacterData.join(''));
+		$("#content").html(newCharacterData.join(''));
 	},
 	resetGameButtons: function() {
 		$("#buttonHolder").html(this.finishButtonString + this.undoButtonString);

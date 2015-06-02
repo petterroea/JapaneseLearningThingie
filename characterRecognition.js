@@ -2,7 +2,7 @@ var CharacterRecognition = {
 	gridX: 12,
 	gridY: 12,
 	renderLetter: function(letter) {
-		$("body").append('<canvas id="renderCanvas" width="500" height="500"> </canvas>');
+		$("#content").append('<canvas id="renderCanvas" width="500" height="500"> </canvas>');
 		var canvasHandle = document.getElementById("renderCanvas");
 		var contextHandle = canvasHandle.getContext("2d");
 		//Render letter
@@ -204,7 +204,7 @@ var CharacterRecognition = {
 		this.renderGridValidation("renderCanvas", bb, gridData);
 	},
 	testDrawing: function() {
-		$("body").append('<canvas id="drawTest" width="500" height="500"> </canvas>');
+		$("#content").append('<canvas id="drawTest" width="500" height="500"> </canvas>');
 		CharacterRecognition.registerCanvasAsDrawingCanvas("drawTest");
 	},
 	drawingComplete: function() {
@@ -220,24 +220,50 @@ var CharacterRecognition = {
 	drawingxCoords: [],
 	drawingyCoords: [],
 	mouseDown: false,
+	pointerDown: function(x, y) {
+		CharacterRecognition.mouseDown = true;
+		CharacterRecognition.registerMouse(x, y);
+	},
+	pointerMove: function(x, y) {
+		CharacterRecognition.registerMouse(x, y);
+	},
+	pointerUp: function(x, y) {
+		CharacterRecognition.finishMousePath(x, y);
+	},
 	registerCanvasAsDrawingCanvas: function(id) {
 		this.drawingCanvasId = id;
 		$("#"+id).mousedown(function(e){
-			CharacterRecognition.mouseDown = true;
 			var mouseX = e.pageX-this.offsetLeft;
 			var mouseY = e.pageY-this.offsetTop;
-			CharacterRecognition.registerMouse(mouseX, mouseY);
+			CharacterRecognition.pointerDown(mouseX, mouseY);
 		});
 		$("#"+id).mousemove(function(e){
 			var mouseX = e.pageX-this.offsetLeft;
 			var mouseY = e.pageY-this.offsetTop;
-			CharacterRecognition.registerMouse(mouseX, mouseY);
+			CharacterRecognition.pointerMove(mouseX, mouseY);
 		});
 		$("#"+id).mouseup(function(e){
 			var mouseX = e.pageX-this.offsetLeft;
 			var mouseY = e.pageY-this.offsetTop;
-			CharacterRecognition.finishMousePath(mouseX, mouseY);
+			CharacterRecognition.pointerUp(mouseX, mouseY);
 		});
+		//Touch
+		$("#"+id).on({ "touchstart": function(e){
+			var mouseX = e.pageX-this.offsetLeft;
+			var mouseY = e.pageY-this.offsetTop;
+			CharacterRecognition.pointerDown(mouseX, mouseY);
+		} });
+		$("#"+id).on({ "touchmove": function(e){
+			var mouseX = e.pageX-this.offsetLeft;
+			var mouseY = e.pageY-this.offsetTop;
+			CharacterRecognition.pointerMove(mouseX, mouseY);
+		} });
+		$("#"+id).on({"touchend": function(e){
+			var mouseX = e.pageX-this.offsetLeft;
+			var mouseY = e.pageY-this.offsetTop;
+			CharacterRecognition.pointerUp(mouseX, mouseY);
+		}});
+		//Mouse leave
 		$("#"+id).mouseleave(function(e){
 			var mouseX = e.pageX-this.offsetLeft;
 			var mouseY = e.pageY-this.offsetTop;
