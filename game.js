@@ -31,6 +31,7 @@ function generateWelcomeScreen() {
 			}
 			data.push('</div>');
 			data.push('<input type="button" value="Go!" onClick="initVocab()"/>');
+			data.push('<input type="button" value="Go for cards!" onClick="initVocabCards()"/>');
 			data.push('<h2>Romaji guessing</h2>');
 			for(var i = 0; i < gameList.length; i++) {
 				data.push('<div class="gameBox" id="gameBox' + i + '">');
@@ -96,4 +97,14 @@ function initVocab() {
 	});
 	console.log(vocabList);
 	VocabularyGame.init(vocabList);
+}
+function initVocabCards() {
+	var vocabList = [];
+	$('input:checkbox.vocabularyCheckbox').each(function () {
+	    if(this.checked) {
+	    	vocabList.push(vocabularies[this.name]);
+	    }
+	});
+	console.log(vocabList);
+	VocabularyCardGame.init(vocabList);
 }
