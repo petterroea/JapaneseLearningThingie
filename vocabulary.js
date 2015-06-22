@@ -1,8 +1,8 @@
 var vocabularies = [
 	{
-		"name": "0-100", 
-		"description": "Japanese numbers 0-20, and 10's up to 100", 
-		"source": "Genki 1", 
+		"name": "0-10",
+		"description": "Japanese numbers 0-10",
+		"source": "Genki 1",
 		"data": [
 			{"kana": "ゼロ", "romaji": "zero", "english": ["zero", "0"]},
 			{"kana": "いち", "romaji": "ichi", "english": ["one", "1"]},
@@ -18,7 +18,14 @@ var vocabularies = [
 			{"kana": "はち", "romaji": "hachi", "english": ["eight", "8"]},
 			{"kana": "きゅう", "romaji": "kyuu", "english": ["nine", "9"]},
 			{"kana": "く", "romaji": "ku", "english": ["nine", "9"]},
-			{"kana": "じゅう", "romaji": "juu", "english": ["ten", "10"]},
+			{"kana": "じゅう", "romaji": "juu", "english": ["ten", "10"]}
+		]
+	},
+	{
+		"name": "11-100", 
+		"description": "Japanese numbers 11-20, and each 10 from there on up", 
+		"source": "Genki 1", 
+		"data": [
 			{"kana": "じゅういち", "romaji": "juuichi", "english": ["eleven", "11"]},
 			{"kana": "じゅうに", "romaji": "juuni", "english": ["twelve", "12"]},
 			{"kana": "じゅうさん", "romaji": "juusan", "english": ["thirteen", "13"]},
@@ -39,7 +46,7 @@ var vocabularies = [
 			{"kana": "ななじゅう", "romaji": "nanajuu", "english": ["seventy", "70"]},
 			{"kana": "はちじゅう", "romaji": "hachijuu", "english": ["eighty", "80"]},
 			{"kana": "きゅうじゅう", "romaji": "kyuujuu", "english": ["ninety", "90"]},
-			{"kana": "ひゃく", "romaji": "hyaku", "english": ["one hundred", "100", "hundred"]},
+			{"kana": "ひゃく", "romaji": "hyaku", "english": ["one hundred", "100", "hundred"]}
 		]
 	},
 	{

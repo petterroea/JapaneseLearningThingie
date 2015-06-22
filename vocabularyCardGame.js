@@ -11,6 +11,9 @@ var VocabularyCardGame = {
 				this.vocabList.push(vocabularies[i].data[x]);
 			}
 		}
+		if(this.vocabList.length>8) {
+			this.numberChoices = Math.min(10, Math.round(this.vocabList.length/6)*2);
+		}
 		this.newRound();
 	},
 	handleWin: function() {
@@ -23,6 +26,7 @@ var VocabularyCardGame = {
 		$(".correctButton").attr("onclick","VocabularyCardGame.newRound()");
 	},
 	newRound: function() {
+		console.log("===NEW ROUND===");
 		var randNum = Math.floor(Math.random()*this.vocabList.length);
 		this.answerEnglish = Math.random() < 0.5;
 		this.currentWord = this.vocabList[randNum];
@@ -50,6 +54,8 @@ var VocabularyCardGame = {
 
 			interfaceData.push('<div class="row">');
 			for(var i = 0; i < this.numberChoices; i++) {
+
+				console.log("Iterating button " + i + ". The button with correct should be " + numberToBeShown);
 
 				if(i%2==0&&i!=0) {
 					interfaceData.push('</div><div class="row">');
@@ -113,10 +119,13 @@ var VocabularyCardGame = {
 
 	},
 	getRandomChoice: function(exceptionChoice) {
-		var randNum = Math.floor(Math.random()*this.vocabList.length);
+		console.log("Generating random choice for " + exceptionChoice + ".");
+		var randNum = Math.floor(Math.random()*(this.vocabList.length-1));
+		console.log("First pass: " + randNum);
 		if(randNum>=exceptionChoice) {
 			randNum++;
 		}
+		console.log("Second pass: " + randNum);
 		return this.vocabList[randNum];
 	},
 	serializeEnglish: function(inData) {
